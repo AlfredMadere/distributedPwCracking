@@ -142,9 +142,12 @@ class SubJob:
     return pw_breakingjob
 
   @classmethod
-  def claim_job(cls) -> 'SubJob':
+  def claim_job(cls, worker_id) -> 'SubJob':
     #make a call out to localhost:8000/coordination/get_job, return the response
-    response = requests.get("http://localhost:8000/coordination/get_job")
+    headers = {
+      "worker_id": worker_id
+    }
+    response = requests.get("http://localhost:8000/coordination/get_job", headers=headers)
     #convert the response to a PwBreakingJob
     if response.status_code == 401:
       return None
@@ -154,5 +157,15 @@ class SubJob:
     #if the response is a 401, return None
    
     return job
-
+  
+  def do_job(self, worker_id) -> None:
+    self.try_candidates()
+    finished_job = self.convert_to_finish_job()
+    response = requests.post("http://localhost:8000/coordination/finish_job", json=finished_job.model_dump(), headers={"worker_id": worker_id})
+    if response.status_code == 200:
+      logger.info("Job finished successfully")
+    if finished_job.password is not None:
+      logger.info("Password cracked successfully for user: " + finished_job.user + " password: " + finished_job.password) 
+    else:
+      logger.info("Job failed to be recorded as finished")
 

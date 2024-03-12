@@ -11,7 +11,8 @@ pids = []
 
 
 logger = logging.getLogger(__name__)
-num_cores = multiprocessing.cpu_count()
+num_cores = multiprocessing.cpu_count() - 3
+print("Starting a worker on each of the " + str(num_cores) + " cores")
 for i in range(num_cores):
   pid = os.fork()
   logger.info("started new process with pid: " + str(pid))

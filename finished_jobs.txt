@@ -1,12 +1,12 @@
 =============
 BigJob for user: Bilbo
-Start time: 1709695355.8528981
-End time: 1709695362.137889
-Total time: 6.2849907875061035 
+Start time: 1710273822.4344199
+End time: 1710273836.253547
+Total time: 13.819127082824707 
 Attempts: 317
 Finished: True
 Unstarted jobs: 0
-In progress jobs: 9
+In progress jobs: 8
 Finished jobs: 1
 Password: User: Bilbo 
  Bcrypt Salt: $2b$08$J9FW66ZdPI2nrIMcOxFYI. 
@@ -17,239 +17,18 @@ Password: User: Bilbo
 
 =============
 BigJob for user: Gandalf
-Start time: 1709695362.185357
-End time: 1709695393.970603
-Total time: 31.785245895385742 
-Attempts: 3720
+Start time: 1710273836.331425
+End time: 1710273868.751542
+Total time: 32.420117139816284 
+Attempts: 1720
 Finished: True
 Unstarted jobs: 0
-In progress jobs: 9
-Finished jobs: 4
+In progress jobs: 6
+Finished jobs: 2
 Password: User: Gandalf 
  Bcrypt Salt: $2b$08$J9FW66ZdPI2nrIMcOxFYI. 
  Hash: q2PW6mqALUl2/uFvV9OFNPmHGNPa6YC 
  Cracked Password: wizard 
- 
-=============
-
-=============
-BigJob for user: Thorin
-Start time: 1709695394.05356
-End time: 1709695736.63265
-Total time: 342.5790898799896 
-Attempts: 180584
-Finished: True
-Unstarted jobs: 0
-In progress jobs: 9
-Finished jobs: 181
-Password: User: Thorin 
- Bcrypt Salt: $2b$08$J9FW66ZdPI2nrIMcOxFYI. 
- Hash: 6B7jUcPdnqJz4tIUwKBu8lNMs5NdT9q 
- Cracked Password: diamond 
- 
-=============
-
-=============
-BigJob for user: Fili
-Start time: 1709695736.6767528
-End time: 1709695739.542731
-Total time: 2.865978240966797 
-Attempts: 81
-Finished: True
-Unstarted jobs: 0
-In progress jobs: 4
-Finished jobs: 1
-Password: User: Fili 
- Bcrypt Salt: $2b$09$M9xNRFBDn0pUkPKIVCSBzu 
- Hash: wNDDNTMWlvn7lezPr8IwVUsJbys3YZm 
- Cracked Password: desire 
- 
-=============
-
-=============
-BigJob for user: Kili
-Start time: 1709695739.6123579
-End time: 1709696141.810178
-Total time: 402.197820186615 
-Attempts: 104574
-Finished: True
-Unstarted jobs: 0
-In progress jobs: 9
-Finished jobs: 105
-Password: User: Kili 
- Bcrypt Salt: $2b$09$M9xNRFBDn0pUkPKIVCSBzu 
- Hash: PD2bsU1q8yZPlgSdQXIBILSMCbdE4Im 
- Cracked Password: ossify 
- 
-=============
-
-=============
-BigJob for user: Balin
-Start time: 1709696141.8633049
-End time: 1709697242.538095
-Total time: 1100.6747901439667 
-Attempts: 149978
-Finished: True
-Unstarted jobs: 0
-In progress jobs: 9
-Finished jobs: 151
-Password: User: Balin 
- Bcrypt Salt: $2b$10$xGKjb94iwmlth954hEaw3O 
- Hash: 3YmtDO/mEFLIO0a0xLK1vL79LA73Gom 
- Cracked Password: hangout 
- 
-=============
-
-=============
-BigJob for user: Dwalin
-Start time: 1709697242.585336
-End time: 1709706379.278671
-Total time: 9136.693335056305 
-Attempts: 169761
-Finished: True
-Unstarted jobs: 0
-In progress jobs: 9
-Finished jobs: 171
-Password: User: Dwalin 
- Bcrypt Salt: $2b$10$xGKjb94iwmlth954hEaw3O 
- Hash: FxNMF64erUqDNj6TMMKVDcsETsKK5be 
- Cracked Password: drossy 
- 
-=============
-
-=============
-BigJob for user: Oin
-Start time: 1709706379.335489
-End time: 1709708678.030954
-Total time: 2298.695464849472 
-Attempts: 128774
-Finished: True
-Unstarted jobs: 0
-In progress jobs: 9
-Finished jobs: 130
-Password: User: Oin 
- Bcrypt Salt: $2b$10$xGKjb94iwmlth954hEaw3O 
- Hash: cXR2H2PRHCgo98mjS11UIrVZLKxyABK 
- Cracked Password: ispaghul 
- 
-=============
-
-=============
-BigJob for user: Gloin
-Start time: 1709708678.0892758
-End time: 1709710439.918887
-Total time: 1761.8296110630035 
-Attempts: 100431
-Finished: True
-Unstarted jobs: 0
-In progress jobs: 9
-Finished jobs: 101
-Password: User: Gloin 
- Bcrypt Salt: $2b$11$/8UByex2ktrWATZOBLZ0Du 
- Hash: AXTQl4mWX1hfSjliCvFfGH7w1tX5/3q 
- Cracked Password: oversave 
- 
-=============
-
-=============
-BigJob for user: Dori
-Start time: 1709710439.979469
-End time: 1709712968.016288
-Total time: 2528.0368189811707 
-Attempts: 142517
-Finished: True
-Unstarted jobs: 0
-In progress jobs: 9
-Finished jobs: 143
-Password: User: Dori 
- Bcrypt Salt: $2b$11$/8UByex2ktrWATZOBLZ0Du 
- Hash: b5AmZeqtn7kv/3NCWBrDaRCFahGYyiq 
- Cracked Password: indoxylic 
- 
-=============
-
-=============
-BigJob for user: Nori
-Start time: 1709712968.075077
-End time: 1709713806.304359
-Total time: 838.2292819023132 
-Attempts: 41539
-Finished: True
-Unstarted jobs: 0
-In progress jobs: 9
-Finished jobs: 42
-Password: User: Nori 
- Bcrypt Salt: $2b$11$/8UByex2ktrWATZOBLZ0Du 
- Hash: ER3Ee1GdP6f30TVIXoEhvhQDwghaU12 
- Cracked Password: swagsman 
- 
-=============
-
-=============
-BigJob for user: Ori
-Start time: 1709713806.359565
-End time: 1709721679.2676952
-Total time: 7872.908130168915 
-Attempts: 230185
-Finished: True
-Unstarted jobs: 0
-In progress jobs: 6
-Finished jobs: 231
-Password: User: Ori 
- Bcrypt Salt: $2b$12$rMeWZtAVcGHLEiDNeKCz8O 
- Hash: iERmh0dh8AiNcf7ON3O3P0GWTABKh0O 
- Cracked Password: airway 
- 
-=============
-
-=============
-BigJob for user: Bifur
-Start time: 1709721558.052602
-End time: 1709728117.1572852
-Total time: 6559.104683160782 
-Attempts: 186191
-Finished: True
-Unstarted jobs: 0
-In progress jobs: 9
-Finished jobs: 187
-Password: User: Bifur 
- Bcrypt Salt: $2b$12$rMeWZtAVcGHLEiDNeKCz8O 
- Hash: MoFL0k33O8Lcq33f6AznAZ/cL1LAOyK 
- Cracked Password: corrosible 
- 
-=============
-
-=============
-BigJob for user: Bofur
-Start time: 1709728117.2142022
-End time: 1709732470.816898
-Total time: 4353.602695941925 
-Attempts: 123986
-Finished: True
-Unstarted jobs: 0
-In progress jobs: 9
-Finished jobs: 125
-Password: User: Bofur 
- Bcrypt Salt: $2b$12$rMeWZtAVcGHLEiDNeKCz8O 
- Hash: se2KNe821.l2h5eLffzWoP01DlQb72O 
- Cracked Password: libellate 
- 
-=============
-
-=============
-BigJob for user: Durin
-Start time: 1709732470.885531
-End time: 1709737538.15808
-Total time: 5067.272549152374 
-Attempts: 70107
-Finished: True
-Unstarted jobs: 0
-In progress jobs: 9
-Finished jobs: 71
-Password: User: Durin 
- Bcrypt Salt: $2b$13$6ypcazOOkUT/a7EwMuIjH. 
- Hash: qbdqmHPDAC9B5c37RT9gEw18BX6FOay 
- Cracked Password: purrone 
  
 =============
 

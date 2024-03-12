@@ -1,24 +1,29 @@
-
-import queue
-from src.password import Password, PydanticPassword
-from src.password_breaking_agent.sub_job import SubJob, StartJob, FinishJob
-import logging
 from nltk.corpus import words
+from src.password import Password, PydanticPassword
+from src.coordination.big_job import BigJob
+from src.password_breaking_agent.sub_job import StartJob, SubJob, StartJob, FinishJob
 from pydantic import BaseModel
-import time
+import time 
+import logging  
 
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
+DEFAULT_BATCH_SIZE = 2000
+WORKER_EXPIRE_TIME = 60 * 2 #1 minutes
 
 class Status(BaseModel):
-  num_in_progress_jobs: int = 0 
-  num_finished_jobs: int  = 0 
-  uncracked_passwords: list[PydanticPassword] = None
-  cracked_passwords: list[PydanticPassword] = None
-  start_time: float = None
-  end_time: float = None
+  unfinished_big_jobs: list[str] = []
+  finished_big_jobs: list[str] = []
+  start_time: float |None = None
+  end_time: float |None  = None
+  total_time: float = None
+  attempts_per_second: float = None
+  total_attempts: int = None
+  active_workers: int = None
+  
 
-class CoordinationService:
+class CoordinationService():
   _instance = None
   _initialized = False
 
@@ -26,131 +31,115 @@ class CoordinationService:
     if not cls._instance:
       cls._instance = super(CoordinationService, cls).__new__(cls)
     return cls._instance
+  
 
-  def __init__(self, pathToShadowFile: str, passwords_to_try: list[str]) -> None:
+  def __init__(self, pathToShadowFile: str, passwords_to_try: list[str], batch_size: int = DEFAULT_BATCH_SIZE) -> None:
     if CoordinationService._initialized:
-      return
+      return 
 
     CoordinationService._initialized = True
-    logger.debug("Initializing coordination service")
-    passwords = Password.generatePasswordsFromFile(pathToShadowFile)
-    logger.info(f"Generated {len(passwords)} passwords from file")
-    self.passwords = self.generate_pw_to_crack_queue(passwords)
-    self.current_password = self.passwords.get()
-    self.uncracked_passwords: dict[str, Password] = {}
-    self.uncracked_passwords = {pw.user: pw for pw in passwords}
+    self.pathToShadowFile = pathToShadowFile
     self.possible_passwords = passwords_to_try
-    self.pw_to_try_queue = self.generate_pw_to_try_queue(self.possible_passwords)
-    self.cracked_passwords: dict[str, Password] = {}
-    self.in_progress_jobs = {}
-    self.finished_jobs = {}
+    self.batch_size = batch_size
+    self.unfinished_big_jobs: list[BigJob] = []
+    self.generate_big_jobs()
+    self.finished_big_jobs: list[BigJob] = []
     self.start_time = 0
-    self.end_time = 0
+    self.end_time = None 
+    self.total_attempts = 0
+    self.attempts_per_second = 0
+    #mapping of worker id to time of last interaction, either a get_job or a finish_job
+    self.active_workers: dict[str, int] = {}
+    
+  
+  def generate_big_jobs(self):
+    passwords = Password.generatePasswordsFromFile(self.pathToShadowFile)
+    for password in passwords:
+      big_job = BigJob(password, self.possible_passwords, self.batch_size)
+      self.unfinished_big_jobs.append(big_job) 
+  
+  def update_active_workers(self, worker_id: str | None) -> None:
+    if worker_id is not None:
+      self.active_workers[worker_id] = time.time()
+    else :
+      logger.error("Worker id is None")
+    for worker_id, last_interaction in list(self.active_workers.items()):
+      if time.time() - last_interaction > WORKER_EXPIRE_TIME:
+        self.active_workers.pop(worker_id)
+        logger.info(f"Worker {worker_id} expired")
 
-  def generate_pw_to_try_queue(self, passwords_to_try: list[str]) -> queue.Queue:
-    pw_to_try_queue = queue.Queue()
-    for pw in passwords_to_try:
-      pw_to_try_queue.put(pw)
-    if pw_to_try_queue.empty():
-      raise Exception("No passwords to try")
-    return pw_to_try_queue
-
-  def generate_pw_to_crack_queue(self, passwords) -> queue.Queue:
-    pw_to_crack_queue = queue.Queue()
-    for pw in passwords:
-      pw_to_crack_queue.put(pw)
-    return pw_to_crack_queue
-
-  def get_job(self, num_passwords: int) -> StartJob :
-    #check if there 
-    #if we haven't started the timer, start it
+  def get_job(self, worker_id: str | None) -> StartJob:
+    #batch size is depricated
+    self.update_active_workers(worker_id)
     if self.start_time == 0:
       self.start_time = time.time()
-    if self.pw_to_try_queue.empty():
-      self.move_to_next_password()
-    if self.current_password is None:
-      return None
-
-    job_passwords = []
-
-    for _ in range(num_passwords):
-      try: 
-        job_passwords.append(self.pw_to_try_queue.get(False))
-      except queue.Empty:
+    sub_job = None
+    for big_job in self.unfinished_big_jobs:
+      sub_job = big_job.get_sub_job()
+      if sub_job is not None:
         break
-
-    job = SubJob(self.current_password, job_passwords)
-
-    self.in_progress_jobs[job.id] = job
-    return SubJob.subjob_to_startjob(job)
-
-  def move_to_next_password(self) -> None:
-    try: 
-      #move the current password forward
-      self.current_password = self.passwords.get(False)
-      #reset the queue of passwords to try
-      self.pw_to_try_queue = self.generate_pw_to_try_queue(self.possible_passwords) 
-    except queue.Empty:
-      logger.info("No more passwords to crack")
-      self.current_password = None
-
-
-  def finish_job(self, finish_job: FinishJob) -> None:
-    job = SubJob.finishjob_to_subjob(finish_job)
-    self.in_progress_jobs.pop(job.id)
-    self.finished_jobs[job.id] = job
-    if self.uncracked_passwords.get(job.password.user) is None:
-      logger.info(f"Password {job.password.user} is already cracked, not updating")
+    if sub_job is None:
+      return None
+    return SubJob.subjob_to_startjob(sub_job)
+  
+  def update_attempts_per_second(self) -> None:
+    self.attempts_per_second = self.total_attempts / (time.time() - self.start_time)
+  
+  def finish_job(self, job: FinishJob, worker_id: str | None) -> None:
+    self.update_active_workers(worker_id)
+    logger.info(f"Finishing job for user: {job.user}")
+    pw_job = SubJob.finishjob_to_subjob(job)
+    self.total_attempts += job.attempts
+    self.update_attempts_per_second()
+    big_job = self.get_big_job_by_id(pw_job.password.user)
+    if big_job is None:
+      logger.info('finishing job for already finished big job')
       return 
-    
-    self.update_passwords(job)
-    if job.password.cracked_pw is not None:
-      self.spew_cracked_passwords_to_file()
-      self.move_to_next_password()
-
-    if len(self.uncracked_passwords.items()) == 0:
+    big_job.finish_sub_job(pw_job)
+    if big_job.is_finished():
+      self.finished_big_jobs.append(big_job)
+      self.unfinished_big_jobs.remove(big_job)
+      self.spew_out_completed_jobs_to_file()
+    if self.unfinished_big_jobs == []:
       self.end_time = time.time()
-    
-  def spew_cracked_passwords_to_file(self) -> None:
-    with open("cracked_passwords.txt", "w") as f:
-      for pw in self.cracked_passwords.values():
-        f.write(f"\n\n=============\n\n{str(pw)}\n\n=============\n\n")
+      
+  def spew_out_completed_jobs_to_file(self):
+    with open("finished_jobs.txt", "w") as file:
+        for big_job in self.finished_big_jobs:
+            file.write(f"=============\n{str(big_job)}\n=============\n\n") 
 
-  def update_passwords(self, job: SubJob) -> None: 
-    if job.password.cracked_pw is not None:
-      password = self.uncracked_passwords.pop(job.password.user)
-      password.end_time = time.time()
-      password.attempts += job.attempts
-      password.cracked_pw = job.password.cracked_pw
-      self.cracked_passwords[password.user] = password
-    else:
-      password = self.uncracked_passwords.pop(job.password.user)
-      password.attempts += job.attempts
-      self.uncracked_passwords[password.user] = password
-     
-    
+
+  def get_big_job_by_id(self, big_job_id: str) -> BigJob:
+    for big_job in self.unfinished_big_jobs:
+      if big_job.id == big_job_id:
+        return big_job
+    return None
+  
   def get_status(self) -> Status:
     #map in progress jobs to start jobs
     #map finished jobs to finish jobs
     #map passwords to pydantic passwords
-    for job in self.in_progress_jobs.values():
-      logger.info(f"job id: {job.id} job: {job}")
-    logger.info(f"current password is {self.current_password}")
+    total_time = self.end_time - self.start_time if self.end_time is not None else time.time() - self.start_time
     return Status(
-      num_in_progress_jobs= len(self.in_progress_jobs.items()),#{str(job_id): PwBreakingJob.pw_job_to_startjob(job) for job_id, job in self.in_progress_jobs.items()},
-      # in_progress_jobs={},
-      num_finished_jobs= len(self.finished_jobs.items()),#{str(job_id): PwBreakingJob.finish_job_to_pw_job(job) for job_id, job in self.finished_jobs.items()},
-      # finished_jobs={},
-      uncracked_passwords=[Password.password_to_pydantic_password(pw) for pw in self.uncracked_passwords.values()],
-      # uncracked_passwords=[],
-      cracked_passwords=[Password.password_to_pydantic_password(pw) for pw in self.cracked_passwords.values()],
-      # cracked_passwords=[],
+      unfinished_big_jobs=[str(big_job) for big_job in self.unfinished_big_jobs],
+      finished_big_jobs=[str(big_job) for big_job in self.finished_big_jobs],
       start_time=self.start_time,
       end_time=self.end_time,
+      total_time=total_time,
+      attempts_per_second=self.attempts_per_second,
+      total_attempts=self.total_attempts,
+      active_workers=len(self.active_workers)
     )
 
 
+
+
+
+ 
+
+
+ 
+
 def get_coordination_service() -> CoordinationService:
-  # return CoordinationService("fakeshadow2.txt",  words.words()[:500] + ["password1"] +  ["password2"] + ["password0"] + ["password3"] + ["password4"])
+  # return CoordinationService("fakeshadow2.txt",  words.words()[:500] + ["password1"] + words.words()[:500] + ["password2"] + words.words()[:500]  + ["password0"] + ["password3"] + ["password4"])
   return CoordinationService("shadow.txt",  words.words())
-  # words.words()[:1000]  + words.words()[30000:400] +
