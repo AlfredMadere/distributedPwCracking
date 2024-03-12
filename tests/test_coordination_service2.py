@@ -1,5 +1,5 @@
 import pytest
-from src.coordination.coordination_service2 import CoordinationService
+from src.coordination.coordination_service import CoordinationService
 from src.password_breaking_agent.sub_job import SubJob, StartJob, FinishJob
 
 def test_generate_big_jobs():

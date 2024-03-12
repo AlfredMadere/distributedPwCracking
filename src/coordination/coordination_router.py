@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, Request
 from src.password_breaking_agent.sub_job import SubJob
-from src.coordination.coordination_service2 import CoordinationService, get_coordination_service, StartJob, FinishJob, Status
+from src.coordination.coordination_service import CoordinationService, get_coordination_service, StartJob, FinishJob, Status
 from pydantic import BaseModel
 import fastapi
 import logging
