@@ -1,7 +1,7 @@
 import pytest
 from nltk.corpus import words
 from src.coordination.coordination_service import CoordinationService
-from src.password_breaking_agent.pw_breaking_job import PwBreakingJob, StartJob
+from src.password_breaking_agent.sub_job import SubJob, StartJob
 
 
 def test_get_job():

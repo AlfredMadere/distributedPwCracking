@@ -2,7 +2,7 @@ from src.password import Password
 import time 
 import logging
 import queue 
-from src.password_breaking_agent.pw_breaking_job import PwBreakingJob 
+from src.password_breaking_agent.sub_job import SubJob 
 import itertools
 
 logger = logging.getLogger(__name__)
@@ -12,11 +12,12 @@ class BigJob:
       self.password = password
       self.id = password.user
       self.passwords_to_try = passwords_to_try 
-      self.unstarted_jobs: dict[str, PwBreakingJob] = self.generate_sub_jobs(sub_job_size)
-      self.in_progress_jobs: dict[str, PwBreakingJob] = {}
-      self.finished_jobs: dict[str, PwBreakingJob] = {}
+      self.unstarted_jobs: dict[str, SubJob] = self.generate_sub_jobs(sub_job_size)
+      self.in_progress_jobs: dict[str, SubJob] = {}
+      self.finished_jobs: dict[str, SubJob] = {}
       self.attempts = 0
       self.start_time = 0
+      self.hash_per_second = 0
       self.end_time = 0
       self.finished = False
 
@@ -24,18 +25,18 @@ class BigJob:
     def __str__(self) -> str:
       return f"BigJob for user: {self.password.user}\nStart time: {self.start_time}\nEnd time: {self.end_time}\nTotal time: {self.end_time - self.start_time} \nAttempts: {self.attempts}\nFinished: {self.finished}\nUnstarted jobs: {len(self.unstarted_jobs.items())}\nIn progress jobs: {len(self.in_progress_jobs.items())}\nFinished jobs: {len(self.finished_jobs)}\nPassword: {str(self.password)}"
 
-    def generate_sub_jobs(self, sub_job_size: int) -> dict[str, PwBreakingJob]:
+    def generate_sub_jobs(self, sub_job_size: int) -> dict[str, SubJob]:
       sub_jobs = {}
       for i in range(0, len(self.passwords_to_try), sub_job_size):
           chunk = self.passwords_to_try[i:i+sub_job_size]
-          job = PwBreakingJob(self.password, chunk)
+          job = SubJob(self.password, chunk)
           sub_jobs[job.id] = job
       return sub_jobs
     
     def is_finished(self) -> bool:
       return self.finished
 
-    def get_sub_job(self) -> PwBreakingJob:
+    def get_sub_job(self) -> SubJob:
       if self.start_time == 0:
         self.start_time = time.time()
       if len(self.unstarted_jobs) == 0:
@@ -54,11 +55,12 @@ class BigJob:
           self.in_progress_jobs.pop(job_id)
           logger.info(f"Job {job_id} expired")
 
-    def finish_sub_job(self, job: PwBreakingJob) -> None:
+    def finish_sub_job(self, job: SubJob) -> None:
       logger.info(f"Finishing sub job {job.id}, {job.password.cracked_pw}")
       self.in_progress_jobs.pop(job.id)
       self.finished_jobs[job.id] = job
       self.attempts += job.attempts
+      self.hash_per_second = self.attempts / (time.time() - self.start_time)
       if job.password.cracked_pw is not None:
         self.password.cracked_pw = job.password.cracked_pw
         self.whole_job_finished()

@@ -1,7 +1,7 @@
 from nltk.corpus import words
 from src.password import Password, PydanticPassword
 from src.coordination.big_job import BigJob
-from src.password_breaking_agent.pw_breaking_job import StartJob, PwBreakingJob, StartJob, FinishJob
+from src.password_breaking_agent.sub_job import StartJob, SubJob, StartJob, FinishJob
 from pydantic import BaseModel
 import time 
 import logging  
@@ -49,7 +49,7 @@ class CoordinationService():
       big_job = BigJob(password, self.possible_passwords, self.batch_size)
       self.unfinished_big_jobs.append(big_job) 
 
-  def get_job(self, batch_size: int = 250) -> StartJob:
+  def get_job(self) -> StartJob:
     #batch size is depricated
     if self.start_time == 0:
       self.start_time = time.time()
@@ -60,11 +60,11 @@ class CoordinationService():
         break
     if sub_job is None:
       return None
-    return PwBreakingJob.pw_job_to_startjob(sub_job)
+    return SubJob.subjob_to_startjob(sub_job)
   
   def finish_job(self, job: FinishJob) -> None:
     logger.info(f"Finishing job for user: {job.user}")
-    pw_job = PwBreakingJob.finish_job_to_pw_job(job)
+    pw_job = SubJob.finishjob_to_subjob(job)
     big_job = self.get_big_job_by_id(pw_job.password.user)
     if big_job is None:
       logger.info('finishing job for already finished big job')

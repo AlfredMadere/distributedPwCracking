@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, Request
-from src.password_breaking_agent.pw_breaking_job import PwBreakingJob
+from src.password_breaking_agent.sub_job import SubJob
 from src.coordination.coordination_service2 import CoordinationService, get_coordination_service, StartJob, FinishJob, Status
 from pydantic import BaseModel
 import fastapi
@@ -16,9 +16,8 @@ def health(request: Request) -> fastapi.Response:
 
 
 @coordination_router.get("/coordination/get_job", response_model=StartJob, summary="Get a job to break a password", responses={200: {"model": StartJob}, 401: {"description": "no more passwords to crack"}})
-def get_job(request: Request, coordination_service: CoordinationService = Depends(get_coordination_service)) -> PwBreakingJob:
-  DEFAULT_BATCH_SIZE = 100000
-  job = coordination_service.get_job(DEFAULT_BATCH_SIZE)
+def get_job(request: Request, coordination_service: CoordinationService = Depends(get_coordination_service)) -> SubJob:
+  job = coordination_service.get_job()
   if job is None:
     return fastapi.Response(status_code=401)
   else:

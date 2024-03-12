@@ -33,18 +33,18 @@ class FinishJob(StartJob):
 
 MAX_JOB_TIME = 60 * 5 #5 minutes
 
-class PwBreakingJob:
+class SubJob:
   def __init__(self, password: Password, pw_to_try: list[str], id: str | None = None) -> None:
     self.password = password
     if id is not None:
       self.id = uuid.UUID(id)
     else: 
       self.id = uuid.uuid4()
-    self.pw_to_try = pw_to_try
+    self.candidates = pw_to_try
     self.start_time = 0
     self.end_time = 0
     self.attempts = 0
-    self.pw_per_second = 0
+    self.candidates_per_second = 0
 
   def is_expired(self) -> bool:
     if self.start_time == 0:
@@ -62,10 +62,10 @@ class PwBreakingJob:
     logger.debug(f"Hashed password: {hashed_pw}")
     return hashed_pw.decode()
   
-  def break_password(self) -> str | None :
+  def try_candidates(self) -> str | None :
     logger.info(f"Breaking password for user: {self.password.user}")
     self.start_time = time.time()
-    for pw in self.pw_to_try:
+    for pw in self.candidates:
       if self.attempts is None:
         self.attempts = 0
       self.attempts += 1
@@ -77,7 +77,7 @@ class PwBreakingJob:
       # logger.info(f"Repr comparison: {repr(hashed_pw)} vs {repr(self.password.bcrypt_salt + self.password.hash)}")
       if hashed_pw == (self.password.bcrypt_salt + self.password.hash):
         self.end_time = time.time()
-        self.pw_per_second = 10# self.attempts / (self.end_time - self.start_time)
+        self.candidates_per_second = 10# self.attempts / (self.end_time - self.start_time)
         self.password.cracked_pw = pw
         logger.info(f"Password cracked: {pw}")
         return pw
@@ -89,7 +89,7 @@ class PwBreakingJob:
     return FinishJob(
       bcrypt_salt=self.password.bcrypt_salt,
       pw_hash=self.password.hash,
-      passwords_to_try=self.pw_to_try,
+      passwords_to_try=self.candidates,
       user=self.password.user,
       password=self.password.cracked_pw,
       start_time=self.start_time,
@@ -100,20 +100,20 @@ class PwBreakingJob:
     )
 
   @classmethod
-  def pw_job_to_startjob(cls, job: 'PwBreakingJob') -> StartJob:
+  def subjob_to_startjob(cls, job: 'SubJob') -> StartJob:
     return StartJob(
       bcrypt_salt=job.password.bcrypt_salt,
       pw_hash=job.password.hash,
-      passwords_to_try=job.pw_to_try,
+      passwords_to_try=job.candidates,
       user=job.password.user,
       job_id=str(job.id)
     )
 
   @classmethod
-  def finish_job_to_pw_job(cls, job: FinishJob) -> 'PwBreakingJob':
+  def finishjob_to_subjob(cls, job: FinishJob) -> 'SubJob':
     password = Password(f"{job.user}:{job.bcrypt_salt}{job.pw_hash}")
     password.cracked_pw = job.password
-    pw_breakingjob = PwBreakingJob(
+    pw_breakingjob = SubJob(
       password=password,
       id=job.job_id,
       pw_to_try=job.passwords_to_try,
@@ -121,7 +121,7 @@ class PwBreakingJob:
     pw_breakingjob.start_time=job.start_time
     pw_breakingjob.end_time=job.end_time
     pw_breakingjob.attempts=job.attempts
-    pw_breakingjob.pw_per_second=job.pw_per_second
+    pw_breakingjob.candidates_per_second=job.pw_per_second
     return pw_breakingjob
 
   def monitor_progress(self) -> None:
@@ -130,11 +130,11 @@ class PwBreakingJob:
 
 
   @classmethod
-  def start_job_to_pw_breaking_job(cls, job: StartJob) -> 'PwBreakingJob':
+  def startjob_to_subjob(cls, job: StartJob) -> 'SubJob':
     password_constrction_str = f"{job.user}:{job.bcrypt_salt}{job.pw_hash}"
     password = Password(password_constrction_str)
     logger.info(f"Creating job for user: {password_constrction_str}")
-    pw_breakingjob = PwBreakingJob(
+    pw_breakingjob = SubJob(
       password=password,
       id=job.job_id,
       pw_to_try=job.passwords_to_try,
@@ -142,7 +142,7 @@ class PwBreakingJob:
     return pw_breakingjob
 
   @classmethod
-  def get_job(cls) -> 'PwBreakingJob':
+  def claim_job(cls) -> 'SubJob':
     #make a call out to localhost:8000/coordination/get_job, return the response
     response = requests.get("http://localhost:8000/coordination/get_job")
     #convert the response to a PwBreakingJob
@@ -150,7 +150,7 @@ class PwBreakingJob:
       return None
     if response.status_code != 200:
       raise Exception(f"Failed to get job: {response.status_code}")
-    job = PwBreakingJob.start_job_to_pw_breaking_job(StartJob.model_validate(response.json()))
+    job = SubJob.startjob_to_subjob(StartJob.model_validate(response.json()))
     #if the response is a 401, return None
    
     return job

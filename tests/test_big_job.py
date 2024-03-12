@@ -1,6 +1,6 @@
 import pytest
 from src.coordination.big_job import BigJob
-from src.password_breaking_agent.pw_breaking_job import PwBreakingJob 
+from src.password_breaking_agent.sub_job import SubJob 
 from src.password import Password
 
 def test_generate_sub_jobs():
@@ -17,13 +17,13 @@ def test_generate_sub_jobs():
     # Check that each job contains the correct number of passwords
     for job_id, job in sub_jobs.items():
         if job_id != 'job_2':
-            assert len(job.pw_to_try) == sub_job_size
+            assert len(job.candidates) == sub_job_size
         else:
             # The last job may be smaller than sub_job_size
-            assert len(job.pw_to_try) <= sub_job_size
+            assert len(job.candidates) <= sub_job_size
 
     # Check that all passwords are covered by the jobs
-    all_passwords_in_jobs = [password for job in sub_jobs.values() for password in job.pw_to_try]
+    all_passwords_in_jobs = [password for job in sub_jobs.values() for password in job.candidates]
     assert set(all_passwords_in_jobs) == set(passwords_to_try)
 
 def test_big_job():
@@ -45,11 +45,11 @@ def test_big_job():
   #get the rest of the jobs
   rest_of_jobs = [big_job.get_sub_job() for i in range(3)]
   for job in rest_of_jobs:
-      job.break_password()
+      job.try_candidates()
       big_job.finish_sub_job(job)
 
   #make sure at least one of the rest_of_jobs has ['weird', 'password1'] as the pw_to_try
-  assert any([job.pw_to_try == ['weird', 'password1'] for job in rest_of_jobs])
+  assert any([job.candidates == ['weird', 'password1'] for job in rest_of_jobs])
 
   assert big_job.end_time is not None
   assert big_job.unstarted_jobs == {}
@@ -71,7 +71,7 @@ def test_big_job_cannot_find():
   rest_of_jobs = [big_job.get_sub_job() for i in range(5)]
   for job in rest_of_jobs:
     if job is not None:
-      job.break_password()
+      job.try_candidates()
       big_job.finish_sub_job(job)
 
   #make sure at least one of the rest_of_jobs has ['weird', 'password1'] as the pw_to_try

@@ -1,7 +1,7 @@
 
 import queue
 from src.password import Password, PydanticPassword
-from src.password_breaking_agent.pw_breaking_job import PwBreakingJob, StartJob, FinishJob
+from src.password_breaking_agent.sub_job import SubJob, StartJob, FinishJob
 import logging
 from nltk.corpus import words
 from pydantic import BaseModel
@@ -79,10 +79,10 @@ class CoordinationService:
       except queue.Empty:
         break
 
-    job = PwBreakingJob(self.current_password, job_passwords)
+    job = SubJob(self.current_password, job_passwords)
 
     self.in_progress_jobs[job.id] = job
-    return PwBreakingJob.pw_job_to_startjob(job)
+    return SubJob.subjob_to_startjob(job)
 
   def move_to_next_password(self) -> None:
     try: 
@@ -96,7 +96,7 @@ class CoordinationService:
 
 
   def finish_job(self, finish_job: FinishJob) -> None:
-    job = PwBreakingJob.finish_job_to_pw_job(finish_job)
+    job = SubJob.finishjob_to_subjob(finish_job)
     self.in_progress_jobs.pop(job.id)
     self.finished_jobs[job.id] = job
     if self.uncracked_passwords.get(job.password.user) is None:
@@ -116,7 +116,7 @@ class CoordinationService:
       for pw in self.cracked_passwords.values():
         f.write(f"\n\n=============\n\n{str(pw)}\n\n=============\n\n")
 
-  def update_passwords(self, job: PwBreakingJob) -> None: 
+  def update_passwords(self, job: SubJob) -> None: 
     if job.password.cracked_pw is not None:
       password = self.uncracked_passwords.pop(job.password.user)
       password.end_time = time.time()

@@ -1,5 +1,5 @@
 from src.password import Password
-from src.password_breaking_agent.pw_breaking_job import PwBreakingJob
+from src.password_breaking_agent.sub_job import SubJob
 import pytest
 import nltk 
 nltk.download('words')
@@ -9,8 +9,8 @@ def test_password_breaking_service():
     shadow_str = "Bilbo:$2b$08$J9FW66ZdPI2nrIMcOxFYI.zKGJsUXmWLAYWsNmIANUy5JbSjfyLFu"
     password = Password(shadow_str)
     possible_passwords = ["registrationsucks"]
-    password_breaker = PwBreakingJob(password, possible_passwords)
-    broken_password = password_breaker.break_password()
+    password_breaker = SubJob(password, possible_passwords)
+    broken_password = password_breaker.try_candidates()
     assert broken_password == "registrationsucks"
 
 def test_pw_b_service_real():
@@ -18,16 +18,16 @@ def test_pw_b_service_real():
     password = Password(shadow_str)
     possible_passwords = words.words()[:4] + ["registrationsucks"] 
     assert len(possible_passwords) == 5
-    password_breaker = PwBreakingJob(password, possible_passwords)
-    broken_password = password_breaker.break_password()
+    password_breaker = SubJob(password, possible_passwords)
+    broken_password = password_breaker.try_candidates()
     assert broken_password == "registrationsucks"
 
 def test_convert_to_finish_job():
     shadow_str = "Bilbo:$2b$08$J9FW66ZdPI2nrIMcOxFYI.zKGJsUXmWLAYWsNmIANUy5JbSjfyLFu"
     password = Password(shadow_str)
     possible_passwords = ["registrationsucks"]
-    password_breaker = PwBreakingJob(password, possible_passwords)
-    broken_password = password_breaker.break_password()
+    password_breaker = SubJob(password, possible_passwords)
+    broken_password = password_breaker.try_candidates()
     finished_job = password_breaker.convert_to_finish_job()
     assert finished_job.password == "registrationsucks"
     assert finished_job.bcrypt_salt == password.bcrypt_salt
@@ -47,8 +47,8 @@ def test_first_shadow():
     shadow_str = "Bilbo:$2b$08$J9FW66ZdPI2nrIMcOxFYI.qx268uZn.ajhymLP/YHaAsfBGP3Fnmq"
     password = Password(shadow_str)
     possible_passwords = words.words()
-    password_breaker = PwBreakingJob(password, possible_passwords)
-    broken_password = password_breaker.break_password()
+    password_breaker = SubJob(password, possible_passwords)
+    broken_password = password_breaker.try_candidates()
     assert broken_password != "NOT FOUND"
     #write the broken password to a new file
     with open("broken_passwords.txt", "w") as f:
