@@ -1,13 +1,30 @@
 =============
-BigJob for user: Bilbo
-Start time: 1710273822.4344199
-End time: 1710273836.253547
-Total time: 13.819127082824707 
-Attempts: 317
+BigJob for user: Gandalf
+Start time: 0
+End time: 1710297138.987107
+Total time: 1710297138.987107 
+Attempts: 1720
 Finished: True
 Unstarted jobs: 0
-In progress jobs: 8
-Finished jobs: 1
+In progress jobs: 0
+Finished jobs: 2
+Password: User: Gandalf 
+ Bcrypt Salt: $2b$08$J9FW66ZdPI2nrIMcOxFYI. 
+ Hash: q2PW6mqALUl2/uFvV9OFNPmHGNPa6YC 
+ Cracked Password: wizard 
+ 
+=============
+
+=============
+BigJob for user: Bilbo
+Start time: 1710297121.029682
+End time: 1710297143.209975
+Total time: 22.180293083190918 
+Attempts: 64053
+Finished: True
+Unstarted jobs: 0
+In progress jobs: 32
+Finished jobs: 33
 Password: User: Bilbo 
  Bcrypt Salt: $2b$08$J9FW66ZdPI2nrIMcOxFYI. 
  Hash: qx268uZn.ajhymLP/YHaAsfBGP3Fnmq 
@@ -16,19 +33,36 @@ Password: User: Bilbo
 =============
 
 =============
-BigJob for user: Gandalf
-Start time: 1710273836.331425
-End time: 1710273868.751542
-Total time: 32.420117139816284 
-Attempts: 1720
+BigJob for user: Thorin
+Start time: 1710297143.332216
+End time: 1710297240.414576
+Total time: 97.08236002922058 
+Attempts: 133584
 Finished: True
 Unstarted jobs: 0
-In progress jobs: 6
-Finished jobs: 2
-Password: User: Gandalf 
+In progress jobs: 33
+Finished jobs: 68
+Password: User: Thorin 
  Bcrypt Salt: $2b$08$J9FW66ZdPI2nrIMcOxFYI. 
- Hash: q2PW6mqALUl2/uFvV9OFNPmHGNPa6YC 
- Cracked Password: wizard 
+ Hash: 6B7jUcPdnqJz4tIUwKBu8lNMs5NdT9q 
+ Cracked Password: diamond 
+ 
+=============
+
+=============
+BigJob for user: Fili
+Start time: 1710297240.528681
+End time: 1710297243.16506
+Total time: 2.6363790035247803 
+Attempts: 81
+Finished: True
+Unstarted jobs: 0
+In progress jobs: 1
+Finished jobs: 1
+Password: User: Fili 
+ Bcrypt Salt: $2b$09$M9xNRFBDn0pUkPKIVCSBzu 
+ Hash: wNDDNTMWlvn7lezPr8IwVUsJbys3YZm 
+ Cracked Password: desire 
  
 =============
 

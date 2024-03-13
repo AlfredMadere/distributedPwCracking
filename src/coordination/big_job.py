@@ -52,12 +52,18 @@ class BigJob:
       for job_id, job in list(self.in_progress_jobs.items()):
         if job.is_expired():
           self.unstarted_jobs[job_id] = job
-          self.in_progress_jobs.pop(job_id)
+          if job_id in self.in_progress_jobs:
+            self.in_progress_jobs.pop(job_id)
+          else :
+            logger.error(f"Job {job_id} not in in_progress_jobs")
           logger.info(f"Job {job_id} expired")
 
     def finish_sub_job(self, job: SubJob) -> None:
       logger.info(f"Finishing sub job {job.id}, {job.password.cracked_pw}")
-      self.in_progress_jobs.pop(job.id)
+      if job.id in self.in_progress_jobs:
+        self.in_progress_jobs.pop(job.id)
+      else :
+        logger.error(f"Job {job.id} not in in_progress_jobs")
       self.finished_jobs[job.id] = job
       self.attempts += job.attempts
       self.hash_per_second = self.attempts / (time.time() - self.start_time)

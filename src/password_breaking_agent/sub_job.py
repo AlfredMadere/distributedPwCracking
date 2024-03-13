@@ -9,11 +9,12 @@ import concurrent.futures
 import uuid
 from pydantic import BaseModel
 import requests
-
+import os
 
 logger = logging.getLogger(__name__)
 num_cores = multiprocessing.cpu_count()
 logger.info(f"Number of cores: {num_cores}")
+service_address = os.environ["GATEWAY_HOST"] if "GATEWAY_HOST" in os.environ else "localhost"
 
 class StartJob(BaseModel):
   bcrypt_salt: str = None
@@ -147,7 +148,7 @@ class SubJob:
     headers = {
       "worker_id": worker_id
     }
-    response = requests.get("http://localhost:8000/coordination/get_job", headers=headers)
+    response = requests.get(f"http://{service_address}:8000/coordination/get_job", headers=headers)
     #convert the response to a PwBreakingJob
     if response.status_code == 401:
       return None
@@ -161,7 +162,7 @@ class SubJob:
   def do_job(self, worker_id) -> None:
     self.try_candidates()
     finished_job = self.convert_to_finish_job()
-    response = requests.post("http://localhost:8000/coordination/finish_job", json=finished_job.model_dump(), headers={"worker_id": worker_id})
+    response = requests.post(f"http://{service_address}:8000/coordination/finish_job", json=finished_job.model_dump(), headers={"worker_id": worker_id})
     if response.status_code == 200:
       logger.info("Job finished successfully")
     if finished_job.password is not None:
