@@ -36,8 +36,10 @@ class CoordinationService():
   def __init__(self, pathToShadowFile: str, passwords_to_try: list[str], batch_size: int = DEFAULT_BATCH_SIZE) -> None:
     if CoordinationService._initialized:
       return 
-
+    
     CoordinationService._initialized = True
+    self.active_workers: dict[str, int] = {}
+
     self.pathToShadowFile = pathToShadowFile
     self.possible_passwords = passwords_to_try
     self.batch_size = batch_size
@@ -49,7 +51,6 @@ class CoordinationService():
     self.total_attempts = 0
     self.attempts_per_second = 0
     #mapping of worker id to time of last interaction, either a get_job or a finish_job
-    self.active_workers: dict[str, int] = {}
     
   
   def generate_big_jobs(self):
@@ -142,4 +143,4 @@ class CoordinationService():
 
 def get_coordination_service() -> CoordinationService:
   # return CoordinationService("fakeshadow2.txt",  words.words()[:500] + ["password1"] + words.words()[:500] + ["password2"] + words.words()[:500]  + ["password0"] + ["password3"] + ["password4"])
-  return CoordinationService("shadow.txt",  words.words())
+  return CoordinationService("hashed_passwords.txt",  words.words())

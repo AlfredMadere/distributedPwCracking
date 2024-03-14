@@ -1,68 +1,136 @@
 =============
-BigJob for user: Gandalf
-Start time: 0
-End time: 1710297138.987107
-Total time: 1710297138.987107 
-Attempts: 1720
+BigJob for user: user1
+Start time: 1710300060.140495
+End time: 1710300118.9580889
+Total time: 58.817593812942505 
+Attempts: 269
 Finished: True
 Unstarted jobs: 0
-In progress jobs: 0
-Finished jobs: 2
-Password: User: Gandalf 
- Bcrypt Salt: $2b$08$J9FW66ZdPI2nrIMcOxFYI. 
- Hash: q2PW6mqALUl2/uFvV9OFNPmHGNPa6YC 
- Cracked Password: wizard 
- 
-=============
-
-=============
-BigJob for user: Bilbo
-Start time: 1710297121.029682
-End time: 1710297143.209975
-Total time: 22.180293083190918 
-Attempts: 64053
-Finished: True
-Unstarted jobs: 0
-In progress jobs: 32
-Finished jobs: 33
-Password: User: Bilbo 
- Bcrypt Salt: $2b$08$J9FW66ZdPI2nrIMcOxFYI. 
- Hash: qx268uZn.ajhymLP/YHaAsfBGP3Fnmq 
- Cracked Password: welcome 
- 
-=============
-
-=============
-BigJob for user: Thorin
-Start time: 1710297143.332216
-End time: 1710297240.414576
-Total time: 97.08236002922058 
-Attempts: 133584
-Finished: True
-Unstarted jobs: 0
-In progress jobs: 33
-Finished jobs: 68
-Password: User: Thorin 
- Bcrypt Salt: $2b$08$J9FW66ZdPI2nrIMcOxFYI. 
- Hash: 6B7jUcPdnqJz4tIUwKBu8lNMs5NdT9q 
- Cracked Password: diamond 
- 
-=============
-
-=============
-BigJob for user: Fili
-Start time: 1710297240.528681
-End time: 1710297243.16506
-Total time: 2.6363790035247803 
-Attempts: 81
-Finished: True
-Unstarted jobs: 0
-In progress jobs: 1
+In progress jobs: 118
 Finished jobs: 1
-Password: User: Fili 
- Bcrypt Salt: $2b$09$M9xNRFBDn0pUkPKIVCSBzu 
- Hash: wNDDNTMWlvn7lezPr8IwVUsJbys3YZm 
- Cracked Password: desire 
+Password: User: user1 
+ Bcrypt Salt: $2b$10$cvbqTUadeYJDdiM6ySBE1e 
+ Hash: sHnQk3iGc0midEoiux1S2QjeUfkB0QG 
+ Cracked Password: asonia 
+ 
+=============
+
+=============
+BigJob for user: user4
+Start time: 1710300109.588703
+End time: 1710300138.246327
+Total time: 28.657624006271362 
+Attempts: 421
+Finished: True
+Unstarted jobs: 0
+In progress jobs: 118
+Finished jobs: 1
+Password: User: user4 
+ Bcrypt Salt: $2b$10$R0sJHKh1N2oqdqg6gcN3Fe 
+ Hash: UQgJEN3ivPl5OxcyiXd3eURak8jyzPC 
+ Cracked Password: cadaverize 
+ 
+=============
+
+=============
+BigJob for user: user6
+Start time: 1710300116.488807
+End time: 1710300161.960053
+Total time: 45.471246004104614 
+Attempts: 677
+Finished: True
+Unstarted jobs: 0
+In progress jobs: 118
+Finished jobs: 1
+Password: User: user6 
+ Bcrypt Salt: $2b$10$IeBvf8UNnSKO2ty4Vo5tue 
+ Hash: aT01cq8ib5hwz/c8YSkPT4kzDg5Lu5G 
+ Cracked Password: spilitic 
+ 
+=============
+
+=============
+BigJob for user: user2
+Start time: 1710300100.741847
+End time: 1710300164.226971
+Total time: 63.48512387275696 
+Attempts: 7706
+Finished: True
+Unstarted jobs: 0
+In progress jobs: 117
+Finished jobs: 5
+Password: User: user2 
+ Bcrypt Salt: $2b$10$cGwsgLyVh9BHm5mnO6li.. 
+ Hash: blA1COWeGHfYjX4w8Yy0WV4HExXyFLi 
+ Cracked Password: mischievousness 
+ 
+=============
+
+=============
+BigJob for user: user5
+Start time: 1710300109.698632
+End time: 1710300212.750602
+Total time: 103.0519700050354 
+Attempts: 2304
+Finished: True
+Unstarted jobs: 0
+In progress jobs: 117
+Finished jobs: 2
+Password: User: user5 
+ Bcrypt Salt: $2b$10$593vnMtCJGnQOCsKm1i4Wu 
+ Hash: I7aQ6lBhB2vC6VsslC0jpRZ4895rBGC 
+ Cracked Password: sportsmanly 
+ 
+=============
+
+=============
+BigJob for user: user3
+Start time: 1710300100.75547
+End time: 1710300225.639234
+Total time: 124.8837640285492 
+Attempts: 2527
+Finished: True
+Unstarted jobs: 0
+In progress jobs: 117
+Finished jobs: 2
+Password: User: user3 
+ Bcrypt Salt: $2b$10$4sjncUZ1umBtzJCyFQg8Te 
+ Hash: NYh7mx5E4N7TnS1lWxM699ZTe7ZsrWK 
+ Cracked Password: Glitnir 
+ 
+=============
+
+=============
+BigJob for user: user7
+Start time: 1710300117.91638
+End time: 1710300227.572723
+Total time: 109.65634298324585 
+Attempts: 1751
+Finished: True
+Unstarted jobs: 0
+In progress jobs: 62
+Finished jobs: 2
+Password: User: user7 
+ Bcrypt Salt: $2b$10$l767H4Bt6vXvk8tmrg1l5O 
+ Hash: qoQOi9NYRlRNY40WUJAwNXoArKfJPHy 
+ Cracked Password: nomisma 
+ 
+=============
+
+=============
+BigJob for user: user9
+Start time: 1710300366.0647628
+End time: 1710300453.081347
+Total time: 87.01658415794373 
+Attempts: 1953
+Finished: True
+Unstarted jobs: 0
+In progress jobs: 89
+Finished jobs: 2
+Password: User: user9 
+ Bcrypt Salt: $2b$10$haVEO6tfqvxaVcP6X3zLsu 
+ Hash: OCW.c84QU1CiL8w2w2rHZIKvLoq80cC 
+ Cracked Password: metoestrum 
  
 =============
 
