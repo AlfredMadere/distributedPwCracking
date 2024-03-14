@@ -1,1 +1,1 @@
-# distributedPwCracking
+Check out the [medium post](https://medium.com/@alfred_96604/demonstrating-the-fragility-of-simple-passwords-with-distributed-computing-ed48e871f04d) about this project! 
