@@ -1,59 +1,8 @@
 =============
-BigJob for user: user6
-Start time: 1710385062.3150542
-End time: 1710385072.522511
-Total time: 10.207456827163696 
-Attempts: 79
-Finished: True
-Unstarted jobs: 0
-In progress jobs: 118
-Finished jobs: 1
-Password: User: user6 
- Bcrypt Salt: $2b$10$JRjH0ePBSaM0xgtVmuYaqO 
- Hash: c4tr7GaD/FiF.mn3Mg6DXwni0fES.Tu 
- Cracked Password: magnetochemistry 
- 
-=============
-
-=============
-BigJob for user: user5
-Start time: 1710385060.530325
-End time: 1710385084.6558368
-Total time: 24.12551188468933 
-Attempts: 298
-Finished: True
-Unstarted jobs: 0
-In progress jobs: 118
-Finished jobs: 1
-Password: User: user5 
- Bcrypt Salt: $2b$10$jwTdkHbgcHeuNC.G7YdRqe 
- Hash: 8BOzDqHhk97pglIUN2rOF0sZfhDGmSy 
- Cracked Password: lophosteon 
- 
-=============
-
-=============
-BigJob for user: user1
-Start time: 1710385041.242272
-End time: 1710385103.750091
-Total time: 62.507819175720215 
-Attempts: 1605
-Finished: True
-Unstarted jobs: 0
-In progress jobs: 117
-Finished jobs: 2
-Password: User: user1 
- Bcrypt Salt: $2b$10$d7MuiO0AmZgFyDusJMrmY. 
- Hash: GB5GUQ7Pk7kICIdH81sgzLffVaRQv.K 
- Cracked Password: Arctalian 
- 
-=============
-
-=============
 BigJob for user: user3
-Start time: 1710385049.993917
-End time: 1710385105.5036778
-Total time: 55.50976085662842 
+Start time: 1710437110.872714
+End time: 1710437194.8305988
+Total time: 83.95788478851318 
 Attempts: 1594
 Finished: True
 Unstarted jobs: 0
@@ -67,61 +16,44 @@ Password: User: user3
 =============
 
 =============
-BigJob for user: user7
-Start time: 1710385066.536882
-End time: 1710385129.322075
-Total time: 62.78519296646118 
-Attempts: 1640
+BigJob for user: user5
+Start time: 1710437179.715978
+End time: 1710437250.539638
+Total time: 70.82366013526917 
+Attempts: 1034
 Finished: True
 Unstarted jobs: 0
-In progress jobs: 117
+In progress jobs: 89
 Finished jobs: 2
-Password: User: user7 
- Bcrypt Salt: $2b$10$O6kDJ2mOFSwcDeJJ0wb3Te 
- Hash: 5JBo9Vl.P.ABHY6XBFAUZC8sc2.ZrS. 
- Cracked Password: overfraught 
+Password: User: user5 
+ Bcrypt Salt: $2b$10$jwTdkHbgcHeuNC.G7YdRqe 
+ Hash: 8BOzDqHhk97pglIUN2rOF0sZfhDGmSy 
+ Cracked Password: lophosteon 
  
 =============
 
 =============
-BigJob for user: user2
-Start time: 1710385046.436047
-End time: 1710385146.250114
-Total time: 99.81406688690186 
-Attempts: 2241
+BigJob for user: user6
+Start time: 1710437250.6496809
+End time: 1710437275.060307
+Total time: 24.41062617301941 
+Attempts: 79
 Finished: True
 Unstarted jobs: 0
-In progress jobs: 117
-Finished jobs: 2
-Password: User: user2 
- Bcrypt Salt: $2b$10$BNcnIkdDVUdeM7gdeWjgvO 
- Hash: 7EFZckfEtPwj4gp.f/JtdNnWZv/RemW 
- Cracked Password: uncriticizingly 
- 
-=============
-
-=============
-BigJob for user: user8
-Start time: 1710385071.0559518
-End time: 1710385147.5477781
-Total time: 76.49182629585266 
-Attempts: 1871
-Finished: True
-Unstarted jobs: 0
-In progress jobs: 117
-Finished jobs: 2
-Password: User: user8 
- Bcrypt Salt: $2b$10$SPhjkznqTYYuTK.XxLSRQO 
- Hash: yTHl/sxa5hgKiLgtpL1Tis/N/HhBKum 
- Cracked Password: aperch 
+In progress jobs: 118
+Finished jobs: 1
+Password: User: user6 
+ Bcrypt Salt: $2b$10$JRjH0ePBSaM0xgtVmuYaqO 
+ Hash: c4tr7GaD/FiF.mn3Mg6DXwni0fES.Tu 
+ Cracked Password: magnetochemistry 
  
 =============
 
 =============
 BigJob for user: user4
-Start time: 1710385054.6356921
-End time: 1710385174.565503
-Total time: 119.9298107624054 
+Start time: 1710437169.5976498
+End time: 1710437291.701507
+Total time: 122.10385727882385 
 Attempts: 2463
 Finished: True
 Unstarted jobs: 0
@@ -131,40 +63,6 @@ Password: User: user4
  Bcrypt Salt: $2b$10$SZtgC7n2UXnSYBw62KjI3O 
  Hash: d1i5e4ppLJtzwyI0th1rlI08EnrBZ.i 
  Cracked Password: descendable 
- 
-=============
-
-=============
-BigJob for user: user12
-Start time: 1710385201.1018538
-End time: 1710385221.716373
-Total time: 20.614519119262695 
-Attempts: 247
-Finished: True
-Unstarted jobs: 0
-In progress jobs: 103
-Finished jobs: 1
-Password: User: user12 
- Bcrypt Salt: $2b$10$n5bJSdUV6lyPEt6z7hk52O 
- Hash: O8ii3BBCwbc54qdK298EX1jIh2PiEsW 
- Cracked Password: daggerbush 
- 
-=============
-
-=============
-BigJob for user: user9
-Start time: 1710385074.719483
-End time: 1710385289.9895282
-Total time: 215.27004528045654 
-Attempts: 18534
-Finished: True
-Unstarted jobs: 0
-In progress jobs: 109
-Finished jobs: 10
-Password: User: user9 
- Bcrypt Salt: $2b$10$zWcSmWQkCrvGT7.x0hKWiu 
- Hash: MdeFH1Iut.wwWINQ3/bBM3scnRIu62m 
- Cracked Password: hyphenate 
  
 =============
 

@@ -11,6 +11,7 @@ num_no_job_available_attempts= 0
 #string uuid
 WORKER_ID = uuid.uuid4().__str__()
 
+#prevent accidentally launching a DDOS attack on yourself by having the workers start at slightly different times
 time.sleep(random.random() * 10)
 
 while True: 
@@ -33,6 +34,7 @@ while True:
     #wait 5 seconds before checking for jobs again
     time.sleep(5 + random.random() * 5)
     continue
+  #Hashes all candidates until the password is found or no more candidates are left, then sends a finish_job post request to the coordination service
   job.do_job(WORKER_ID)
   
 
