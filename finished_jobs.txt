@@ -1,136 +1,170 @@
 =============
-BigJob for user: user1
-Start time: 1710300060.140495
-End time: 1710300118.9580889
-Total time: 58.817593812942505 
-Attempts: 269
-Finished: True
-Unstarted jobs: 0
-In progress jobs: 118
-Finished jobs: 1
-Password: User: user1 
- Bcrypt Salt: $2b$10$cvbqTUadeYJDdiM6ySBE1e 
- Hash: sHnQk3iGc0midEoiux1S2QjeUfkB0QG 
- Cracked Password: asonia 
- 
-=============
-
-=============
-BigJob for user: user4
-Start time: 1710300109.588703
-End time: 1710300138.246327
-Total time: 28.657624006271362 
-Attempts: 421
-Finished: True
-Unstarted jobs: 0
-In progress jobs: 118
-Finished jobs: 1
-Password: User: user4 
- Bcrypt Salt: $2b$10$R0sJHKh1N2oqdqg6gcN3Fe 
- Hash: UQgJEN3ivPl5OxcyiXd3eURak8jyzPC 
- Cracked Password: cadaverize 
- 
-=============
-
-=============
 BigJob for user: user6
-Start time: 1710300116.488807
-End time: 1710300161.960053
-Total time: 45.471246004104614 
-Attempts: 677
+Start time: 1710385062.3150542
+End time: 1710385072.522511
+Total time: 10.207456827163696 
+Attempts: 79
 Finished: True
 Unstarted jobs: 0
 In progress jobs: 118
 Finished jobs: 1
 Password: User: user6 
- Bcrypt Salt: $2b$10$IeBvf8UNnSKO2ty4Vo5tue 
- Hash: aT01cq8ib5hwz/c8YSkPT4kzDg5Lu5G 
- Cracked Password: spilitic 
- 
-=============
-
-=============
-BigJob for user: user2
-Start time: 1710300100.741847
-End time: 1710300164.226971
-Total time: 63.48512387275696 
-Attempts: 7706
-Finished: True
-Unstarted jobs: 0
-In progress jobs: 117
-Finished jobs: 5
-Password: User: user2 
- Bcrypt Salt: $2b$10$cGwsgLyVh9BHm5mnO6li.. 
- Hash: blA1COWeGHfYjX4w8Yy0WV4HExXyFLi 
- Cracked Password: mischievousness 
+ Bcrypt Salt: $2b$10$JRjH0ePBSaM0xgtVmuYaqO 
+ Hash: c4tr7GaD/FiF.mn3Mg6DXwni0fES.Tu 
+ Cracked Password: magnetochemistry 
  
 =============
 
 =============
 BigJob for user: user5
-Start time: 1710300109.698632
-End time: 1710300212.750602
-Total time: 103.0519700050354 
-Attempts: 2304
+Start time: 1710385060.530325
+End time: 1710385084.6558368
+Total time: 24.12551188468933 
+Attempts: 298
+Finished: True
+Unstarted jobs: 0
+In progress jobs: 118
+Finished jobs: 1
+Password: User: user5 
+ Bcrypt Salt: $2b$10$jwTdkHbgcHeuNC.G7YdRqe 
+ Hash: 8BOzDqHhk97pglIUN2rOF0sZfhDGmSy 
+ Cracked Password: lophosteon 
+ 
+=============
+
+=============
+BigJob for user: user1
+Start time: 1710385041.242272
+End time: 1710385103.750091
+Total time: 62.507819175720215 
+Attempts: 1605
 Finished: True
 Unstarted jobs: 0
 In progress jobs: 117
 Finished jobs: 2
-Password: User: user5 
- Bcrypt Salt: $2b$10$593vnMtCJGnQOCsKm1i4Wu 
- Hash: I7aQ6lBhB2vC6VsslC0jpRZ4895rBGC 
- Cracked Password: sportsmanly 
+Password: User: user1 
+ Bcrypt Salt: $2b$10$d7MuiO0AmZgFyDusJMrmY. 
+ Hash: GB5GUQ7Pk7kICIdH81sgzLffVaRQv.K 
+ Cracked Password: Arctalian 
  
 =============
 
 =============
 BigJob for user: user3
-Start time: 1710300100.75547
-End time: 1710300225.639234
-Total time: 124.8837640285492 
-Attempts: 2527
+Start time: 1710385049.993917
+End time: 1710385105.5036778
+Total time: 55.50976085662842 
+Attempts: 1594
 Finished: True
 Unstarted jobs: 0
 In progress jobs: 117
 Finished jobs: 2
 Password: User: user3 
- Bcrypt Salt: $2b$10$4sjncUZ1umBtzJCyFQg8Te 
- Hash: NYh7mx5E4N7TnS1lWxM699ZTe7ZsrWK 
- Cracked Password: Glitnir 
+ Bcrypt Salt: $2b$10$tYSFppoVdmWKqvs.LnIvCe 
+ Hash: VSGVqiSeIYr8fUgUHDIAeBMzEZX3Hyy 
+ Cracked Password: osteectomy 
  
 =============
 
 =============
 BigJob for user: user7
-Start time: 1710300117.91638
-End time: 1710300227.572723
-Total time: 109.65634298324585 
-Attempts: 1751
+Start time: 1710385066.536882
+End time: 1710385129.322075
+Total time: 62.78519296646118 
+Attempts: 1640
 Finished: True
 Unstarted jobs: 0
-In progress jobs: 62
+In progress jobs: 117
 Finished jobs: 2
 Password: User: user7 
- Bcrypt Salt: $2b$10$l767H4Bt6vXvk8tmrg1l5O 
- Hash: qoQOi9NYRlRNY40WUJAwNXoArKfJPHy 
- Cracked Password: nomisma 
+ Bcrypt Salt: $2b$10$O6kDJ2mOFSwcDeJJ0wb3Te 
+ Hash: 5JBo9Vl.P.ABHY6XBFAUZC8sc2.ZrS. 
+ Cracked Password: overfraught 
+ 
+=============
+
+=============
+BigJob for user: user2
+Start time: 1710385046.436047
+End time: 1710385146.250114
+Total time: 99.81406688690186 
+Attempts: 2241
+Finished: True
+Unstarted jobs: 0
+In progress jobs: 117
+Finished jobs: 2
+Password: User: user2 
+ Bcrypt Salt: $2b$10$BNcnIkdDVUdeM7gdeWjgvO 
+ Hash: 7EFZckfEtPwj4gp.f/JtdNnWZv/RemW 
+ Cracked Password: uncriticizingly 
+ 
+=============
+
+=============
+BigJob for user: user8
+Start time: 1710385071.0559518
+End time: 1710385147.5477781
+Total time: 76.49182629585266 
+Attempts: 1871
+Finished: True
+Unstarted jobs: 0
+In progress jobs: 117
+Finished jobs: 2
+Password: User: user8 
+ Bcrypt Salt: $2b$10$SPhjkznqTYYuTK.XxLSRQO 
+ Hash: yTHl/sxa5hgKiLgtpL1Tis/N/HhBKum 
+ Cracked Password: aperch 
+ 
+=============
+
+=============
+BigJob for user: user4
+Start time: 1710385054.6356921
+End time: 1710385174.565503
+Total time: 119.9298107624054 
+Attempts: 2463
+Finished: True
+Unstarted jobs: 0
+In progress jobs: 117
+Finished jobs: 2
+Password: User: user4 
+ Bcrypt Salt: $2b$10$SZtgC7n2UXnSYBw62KjI3O 
+ Hash: d1i5e4ppLJtzwyI0th1rlI08EnrBZ.i 
+ Cracked Password: descendable 
+ 
+=============
+
+=============
+BigJob for user: user12
+Start time: 1710385201.1018538
+End time: 1710385221.716373
+Total time: 20.614519119262695 
+Attempts: 247
+Finished: True
+Unstarted jobs: 0
+In progress jobs: 103
+Finished jobs: 1
+Password: User: user12 
+ Bcrypt Salt: $2b$10$n5bJSdUV6lyPEt6z7hk52O 
+ Hash: O8ii3BBCwbc54qdK298EX1jIh2PiEsW 
+ Cracked Password: daggerbush 
  
 =============
 
 =============
 BigJob for user: user9
-Start time: 1710300366.0647628
-End time: 1710300453.081347
-Total time: 87.01658415794373 
-Attempts: 1953
+Start time: 1710385074.719483
+End time: 1710385289.9895282
+Total time: 215.27004528045654 
+Attempts: 18534
 Finished: True
 Unstarted jobs: 0
-In progress jobs: 89
-Finished jobs: 2
+In progress jobs: 109
+Finished jobs: 10
 Password: User: user9 
- Bcrypt Salt: $2b$10$haVEO6tfqvxaVcP6X3zLsu 
- Hash: OCW.c84QU1CiL8w2w2rHZIKvLoq80cC 
- Cracked Password: metoestrum 
+ Bcrypt Salt: $2b$10$zWcSmWQkCrvGT7.x0hKWiu 
+ Hash: MdeFH1Iut.wwWINQ3/bBM3scnRIu62m 
+ Cracked Password: hyphenate 
  
 =============
 

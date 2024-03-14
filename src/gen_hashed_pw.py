@@ -13,7 +13,7 @@ word_list = words.words()
 
 # Open a file to write the hashed passwords
 with open("hashed_passwords.txt", "w") as file:
-    for i in range(1, 11):
+    for i in range(1, 21):
         # Generate a random username for demonstration
         username = f"user{i}"
         
